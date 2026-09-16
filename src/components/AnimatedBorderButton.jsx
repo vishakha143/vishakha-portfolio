@@ -3,6 +3,8 @@ import { Download } from "lucide-react";
 export const AnimatedBorderButton = ({
   children = "Resume",
   href = "/Vishakha_Kumari_Resume.pdf",
+  icon = <Download className="w-5 h-5" />,
+  ariaLabel = "Open resume",
 }) => {
   return (
     <a
@@ -29,7 +31,7 @@ export const AnimatedBorderButton = ({
         focus-visible:ring-primary
         focus-visible:ring-offset-2
       "
-      aria-label="Open resume"
+      aria-label={ariaLabel}
     >
       {/* Animated Border */}
       <svg
@@ -60,14 +62,7 @@ export const AnimatedBorderButton = ({
 
       {/* Content */}
       <span className="relative z-10 flex items-center justify-center gap-2">
-        <Download
-          className="
-            w-5 h-5
-            transition-transform duration-300
-            group-hover:-translate-y-0.5
-          "
-        />
-
+        {icon}
         <span>{children}</span>
       </span>
     </a>
