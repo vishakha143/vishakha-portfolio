@@ -103,6 +103,7 @@ export const Projects = () => {
           <AnimatedBorderButton
             href="/projects"
             ariaLabel="View all projects"
+            newTab={false}
             icon={<ArrowUpRight className="w-5 h-5" />}
           >
             View All Projects
