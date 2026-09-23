@@ -1,115 +1,12 @@
-import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
-import { ArrowUpRight } from "lucide-react";
-
-export const projects = [
-  {
-    title: "ShopPilot",
-    description:
-      "AI-integrated e-commerce platform with product search, voice navigation, cart and order management, and an admin dashboard.",
-    tags: ["React", "Node.js", "Express", "MongoDB", "AI"],
-    image: "/projects/ShopPilot.png",
-    liveLink: "https://shop-pilot-frontend.vercel.app/",
-    githubLink: "https://github.com/vishakha143/shopPilot-frontend",
-  },
-  {
-    title: "Visera",
-    description:
-      "AI-powered resume platform that helps users create and improve resumes through an intuitive and practical web experience.",
-    tags: ["React", "Node.js", "Express", "MongoDB", "Gemini AI"],
-    image: "/projects/VisEra.png",
-    liveLink: "https://visera-git-main-vishakha143s-projects.vercel.app/",
-    githubLink: "https://github.com/vishakha143/Visera",
-  },
-];
-
-export const Projects = () => {
-  return (
-    <section id="projects" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-3xl mb-16">
-          <span className="text-sm uppercase tracking-widest text-primary font-medium">
-            Projects
-          </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold leading-tight">
-            Selected <span className="text-primary glow-text">work.</span>
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Projects where I've applied full-stack development, problem solving,
-            databases, APIs, and AI-powered features to build practical
-            applications.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <article
-              key={project.title}
-              className="glass rounded-2xl overflow-hidden group hover:border-primary/40 hover:-translate-y-1 transition-all duration-500 animate-fade-in"
-              style={{ animationDelay: `${index * 150}ms` }}
-            >
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={`${project.title} project preview`}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent opacity-80" />
-              </div>
-
-              <div className="p-6 md:p-7">
-                <h3 className="text-2xl font-semibold group-hover:text-primary transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="mt-3 text-muted-foreground leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1.5 rounded-full glass text-xs text-muted-foreground border border-border hover:text-primary hover:border-primary/40 transition-all duration-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-6 mt-7">
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-medium text-primary hover:text-primary/70 transition-colors"
-                  >
-                    Live Demo ↗
-                  </a>
-                  <a
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    GitHub ↗
-                  </a>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="text-center mt-12 animate-fade-in animation-delay-500">
-          <AnimatedBorderButton
-            href="/projects"
-            ariaLabel="View all projects"
-            newTab={false}
-            icon={<ArrowUpRight className="w-5 h-5" />}
-          >
-            View All Projects
-          </AnimatedBorderButton>
-        </div>
-      </div>
-    </section>
-  );
-};
+import { ArrowUpRight, Github, ShieldCheck, Sparkles, Zap } from "lucide-react";
+export const projects=[
+{number:"01",title:"ShopPilot",kind:"AI-integrated e-commerce platform",description:"A full-stack commerce experience with product discovery, voice-assisted search, cart and order flows, admin controls, and MongoDB-backed data management.",impact:["Voice-assisted product discovery","Customer + admin workflows","REST APIs and MongoDB"],tags:["React","Node.js","Express","MongoDB","AI"],image:"/projects/ShopPilot.png",liveLink:"https://shop-pilot-frontend.vercel.app/",githubLink:"https://github.com/vishakha143/shopPilot-frontend"},
+{number:"02",title:"Visera",kind:"AI-powered resume platform",description:"A focused resume product that helps users create and improve their resumes through a modern React interface and an API-backed AI workflow.",impact:["AI-assisted resume creation","Authentication and protected flows","React + Node + MongoDB architecture"],tags:["React","Vite","Tailwind","Node.js","MongoDB","Gemini AI"],image:"/projects/VisEra.png",liveLink:"https://visera-git-main-vishakha143s-projects.vercel.app/",githubLink:"https://github.com/vishakha143/Visera"}];
+export const Projects=()=>(
+<section id="projects" className="relative py-24 md:py-32">
+<div className="container mx-auto px-6">
+<div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between"><div className="max-w-3xl"><p className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Selected work</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.03em] md:text-5xl">Projects that show how I think.</h2><p className="mt-6 text-base leading-8 text-muted-foreground md:text-lg">I’d rather show the problem, the product, and the engineering behind it than just list technologies.</p></div><a href="/projects" className="inline-flex items-center gap-2 self-start rounded-full border border-border px-4 py-2.5 text-sm font-medium transition hover:border-primary/30 hover:text-primary md:self-auto">Open project archive<ArrowUpRight className="h-4 w-4"/></a></div>
+<div className="mt-12 space-y-7">{projects.map((project,index)=><article key={project.title} className="group overflow-hidden rounded-[2rem] border border-border bg-white/[0.02] transition duration-500 hover:-translate-y-1 hover:border-primary/25"><div className="grid lg:grid-cols-[1.05fr_0.95fr]"><div className="relative min-h-[300px] overflow-hidden border-b border-border lg:min-h-[430px] lg:border-b-0 lg:border-r"><img src={project.image} alt={project.title+" project preview"} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"/><div className="absolute inset-0 bg-gradient-to-t from-background via-background/15 to-transparent"/><div className="absolute left-6 top-6 flex items-center gap-2"><span className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs text-white/80">{project.number}</span><span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs text-primary"><{index===0?"Sparkles":"Zap"} className="h-3 w-3"/>{index===0?"AI feature":"product build"}</span></div><div className="absolute bottom-6 left-6 text-sm font-medium text-white/80">{project.kind}</div></div>
+<div className="p-7 md:p-10"><div className="flex items-start justify-between gap-4"><div><p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">Full-stack project</p><h3 className="mt-3 text-3xl font-semibold tracking-[-0.03em] md:text-4xl">{project.title}</h3></div><div className="hidden h-11 w-11 items-center justify-center rounded-xl border border-border sm:flex">{index===0?<Sparkles className="h-5 w-5 text-primary"/>:<Zap className="h-5 w-5 text-primary"/>}</div></div><p className="mt-5 text-sm leading-7 text-muted-foreground md:text-base">{project.description}</p><div className="mt-7 space-y-3">{project.impact.map(item=><div key={item} className="flex items-start gap-3 text-sm text-foreground/85"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary"/><span>{item}</span></div>)}</div><div className="mt-8 flex flex-wrap gap-2">{project.tags.map(tag=><span key={tag} className="rounded-full border border-border bg-background/40 px-3 py-1.5 text-xs text-muted-foreground">{tag}</span>)}</div><div className="mt-9 flex flex-wrap items-center gap-5"><a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:gap-3">Live demo<ArrowUpRight className="h-4 w-4"/></a><a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground"><Github className="h-4 w-4"/>Source code</a></div></div></div></article>)}</div>
+</div></section>
+);
