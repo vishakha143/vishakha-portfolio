@@ -428,16 +428,12 @@ export const Contact = () => {
                 <Send className="w-4 h-4" />
                 Send Message
               </button>
+              <p className="text-xs text-muted-foreground text-center">
+                Opens your email app with the message pre-filled.
+              </p>
 
             </form>
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="mt-20 pt-8 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Vishakha Kumari. Built with React.
-          </p>
         </div>
 
       </div>

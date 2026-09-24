@@ -1,25 +1,61 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0f1418;
-  --color-foreground: #f0f2f5;
+  /* Single accent used everywhere: links, actions, AI, active states */
+  --color-cyan: #00F5FF;
 
-  --color-card: #141a1f;
-  --color-primary: #20b2a6;
-  --color-primary-foreground: #ffffff;
+  /* BASE COLORS */
+  --color-background: #070A0F;  /* Graphite/Near Black */
+  --color-foreground: #F5F7FA;  /* Primary text */
+  --color-card: #0D1117;        /* Darkest surface */
 
-  --color-secondary: #1f2830;
-  --color-secondary-foreground: #20b2a6;
+  /* SEMANTIC */
+  --color-primary: #00F5FF;     /* Cyan - engineering actions */
+  --color-primary-foreground: #070A0F;
+  --color-success: #00D084;
+  --color-warning: #FFB800;
+  --color-danger: #F43F5E;      /* destructive actions and errors only */
 
-  --color-muted: #252e37;
-  --color-muted-foreground: #7a8491;
+  /* SURFACES */
+  --color-surface-1: #0D1117;
+  --color-surface-2: #111722;
+  --color-surface-3: #151B24;
+  --color-secondary: #111722;
+  --color-secondary-foreground: #00F5FF;
 
-  --color-border: #242b32;
+  /* TEXT COLORS */
+  --color-muted: #8B93A1;       /* Muted text */
+  --color-muted-foreground: #A8B0BA;
+
+  /* BORDERS */
+  --color-border: #1A2432;      /* Subtle borders */
+  --color-border-accent: #00F5FF; /* Cyan accent borders */
 
   --radius: 0.75rem;
+  --color-highlight: #00F5FF;
+  --color-surface: #0D1117;
+}
 
-  --color-highlight: #f5a623;
-  --color-surface: #1a2329;
+/* Light mode: soft sage-gray instead of white, calm and low-glare */
+:root.light {
+  --color-cyan: #006A75;
+  --color-danger: #D91E48;
+  --color-background: #DFE7E2;
+  --color-foreground: #17211C;
+  --color-card: #ECF1EE;
+  --color-primary: #006A75;     /* same accent as cyan, tuned for the sage background */
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #D3DDD7;
+  --color-secondary-foreground: #006A75;
+  --color-surface-1: #ECF1EE;
+  --color-surface-2: #D3DDD7;
+  --color-surface-3: #C7D3CC;
+  --color-muted: #6B7A72;
+  --color-muted-foreground: #4B5750;
+  --color-border: #C1CEC6;
+  --color-border-accent: #006A75;
+  --color-highlight: #006A75;
+  --color-surface: #ECF1EE;
 }
 
 @layer base{
@@ -40,63 +76,110 @@
 }
 
 @layer components {
-  .glass{
-    background-color: color-mix(in srgb, var(--color-surface) 50% , transparent);
-    backdrop-filter : blur(16px);
-    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent)
+  /* Glass morphism - Per Spec Section 7 */
+  .glass {
+    background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+    backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
   }
 
-  .glass-strong{
-    background-color: color-mix(in srgb, var(--color-surface) 80% , transparent);
-    backdrop-filter : blur(16px);
-    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent)
+  .glass-strong {
+    background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
+    backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
   }
 
-  .glow-text{
-    text-shadow: 0 0 30px
-    color-mix(in srgb, var(--color-primary) 50%, transparent);
+  /* Glow effects - Neon signals per Spec Section 4 */
+  .glow-text {
+    text-shadow: 0 0 30px color-mix(in srgb, var(--color-primary) 50%, transparent);
   }
 
-  .glow-border{
-    box-shadow: 0 0 20px
-    color-mix(in srgb, var(--color-primary) 20%, transparent),
-    inset 0 0 20px color-mix(in srgb, var(--color-primary) 5% ,transparent)
+  .glow-cyan {
+    box-shadow: 0 0 20px color-mix(in srgb, #00F5FF 20%, transparent),
+                inset 0 0 20px color-mix(in srgb, #00F5FF 5%, transparent);
   }
+
+
+
+  .glow-border {
+    box-shadow: 0 0 20px color-mix(in srgb, var(--color-primary) 20%, transparent),
+                inset 0 0 20px color-mix(in srgb, var(--color-primary) 5%, transparent);
+  }
+
+  .shadow-glow-cyan {
+    box-shadow: 0 0 16px color-mix(in srgb, #00F5FF 35%, transparent);
+  }
+
 }
 
-@layer utilities{
+@layer utilities {
+  /* MOTION TOKENS - Per Spec Section 31 */
+
+  /* Entrance animations */
   @keyframes fade-in {
-    from{
-      opacity:0;
+    from {
+      opacity: 0;
       transform: translateY(20px);
       filter: blur(10px);
     }
-    to{
+    to {
       opacity: 1;
       transform: translateY(0);
       filter: blur(0);
     }
   }
 
-   @keyframes slow-drift {
-    0%,
-    100%{
-      transform: translate(0,0);
+  @keyframes slide-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
     }
-    25%{
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Ambient motion */
+  @keyframes slow-drift {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    25% {
       transform: translate(20px, -30px);
     }
-    50%{
+    50% {
       transform: translate(-15px, -20px);
     }
-    75%{
+    75% {
       transform: translate(30px, 10px);
     }
   }
 
   @keyframes float {
-    0%,
-    100%{
+    0%, 100% {
       transform: translateY(0);
     }
     50% {
@@ -104,65 +187,97 @@
     }
   }
 
+  @keyframes glow-pulse {
+    0%, 100% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* Marquee */
   @keyframes marquee {
-    0%{
+    0% {
       transform: translateX(0);
     }
-    100%{
+    100% {
       transform: translateX(-50%);
     }
   }
-  .animate-fade-in{
-    animation: fade-in 0.8s ease-out both;
-  }
-  .animate-float{
-        animation: float 4s ease-in-out infinite;
-  }
-    .animate-marquee{
-        animation: marquee 30s linear infinite;
-  }
-  .animation-delay-100{
-    animation-delay: 100ms;
-  }
-  .animation-delay-200{
-    animation-delay: 200ms;
-  }
-   .animation-delay-300{
-    animation-delay: 300ms;
-  }
-   .animation-delay-400{
-    animation-delay: 400ms;
-  }
-   .animation-delay-500{
-    animation-delay:500ms;
-  }
-   .animation-delay-600{
-    animation-delay: 600ms;
-  }
-   .animation-delay-700{
-    animation-delay: 700ms;
-  }
-   .animation-delay-800{
-    animation-delay: 800ms;
-  }
 
+  /* SVG animations */
   @keyframes animated-border {
-    0%{
+    0% {
       stroke-dashoffset: 400;
     }
-    100%{
+    100% {
       stroke-dashoffset: -550;
     }
   }
 
-  .group:hover .animated-border-path{
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out both;
+  }
+
+  .animate-slide-in-up {
+    animation: slide-in-up 0.6s ease-out both;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s ease-out both;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out both;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-slow-drift {
+    animation: slow-drift 8s ease-in-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  /* Animation delays for staggering */
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+  .animation-delay-700 { animation-delay: 700ms; }
+  .animation-delay-800 { animation-delay: 800ms; }
+
+  /* Hover effects */
+  .group:hover .animated-border-path {
     animation: animated-border 1.5s linear infinite;
   }
 
-
-  .animated-border:hover{
-    background-color:color-miix(in srgb , #26c4b8 15%, transparent);
+  .animated-border:hover {
+    background-color: color-mix(in srgb, #00F5FF 15%, transparent);
     backdrop-filter: blur(16px);
-    box-shadow: 0 0 20px color-mix(in srgb, #26c4b8 20%, transparent);
+    box-shadow: 0 0 20px color-mix(in srgb, #00F5FF 20%, transparent);
+  }
+
+  /* Reduced motion support - Per Spec Section 32 */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
